@@ -244,6 +244,8 @@ let add = function(num1, num2)
     return num1 + num2;
 }
 
+console.log(add); //see what it'd return if you have an anonymous functon and if you don't.
+
 let sum = add(4, 5);
 console.log(sum);
 
@@ -272,4 +274,206 @@ console.log("The engineer's name: " + Engineer.name)
 
 //An alternative
 console.log("Printing specific info of my newly created object :");
-console.log("The engineer's name: " + Engineer['name'])
+console.log("The engineer's name: " + Engineer['name']);
+
+
+//_________________________________________________________
+
+let hello = ()=>
+{
+    console.log("Hello there! This is an arrow function!");
+    return 1;
+}
+
+console.log(hello());
+
+
+//______________________Arrays___________________________
+
+let myArray = new Array();
+//^To create an array in JS, you create an array object.
+
+let myArray1 = [];
+//^This is another way to create an array, which creates an object immediately. 
+
+//3 ways to add values into an array: Using push(), by specifying the index, by defining the values when you first create.
+myArray.push('first')
+myArray.push('second')
+myArray.push('third')
+
+myArray[3] = 'fourth';
+myArray[4] = 'fifth';
+
+let myArray2 = ['first', 'second', 'third'];
+
+//To print the values: 
+for( i = 0; i <= myArray.length; i++)
+{
+    console.log(myArray[i]);
+}
+//^ PS. unlike Java, you won't end up with an indexOutofBound exception, it'd print 'undefined'. 
+
+let myArray3 = [1, 2.5, 'hi there', function(){console.log('Printing from a function in a mixed-type array!');}, [1, 2, 3], {type: 'object'}];
+for( i = 0; i < myArray3.length; i++)
+{
+    console.log(myArray3[i]);
+}
+
+//To call the function in our mixed-type array:
+myArray3[3]();
+
+//To print the values in the array in mixed array as well:
+for( i = 0; i < myArray3.length; i++)
+    {
+        if(i == 4)
+        {
+            for(ii = 0; ii < myArray3[4].length; ii++)
+            {
+                console.log(myArray3[i][ii]);
+            }    
+        }else
+        {
+        console.log(myArray3[i]);
+        }
+    }
+
+//_______________________________________________________
+console.log('CALLING THE PUSH METHOD: ' + myArray.push()); //Size of array
+console.log('CALLING THE POP METHOD WITH A PARAMETER: ' + myArray.pop(0)); 
+console.log('CALLING THE POP METHOD WITHOUT  A PARAMETER: ' + myArray.pop()); 
+
+//________________Splice___________________________________
+let spliceExample = [1, 2, 3, 4, 5, 6];
+
+console.log('MY ARRAY BEFORE SPLICING: ' + spliceExample);
+console.log('SPLICE(3) OUTPUT: ' + spliceExample.splice(3)); //Anything after 3rd index to be removed
+console.log('MY ARRAY AFTER SPLICING: ' + spliceExample);
+
+spliceExample = [1, 2, 3, 4, 5, 6];
+console.log(spliceExample.splice(4, 1, 6)) 
+console.log(spliceExample)
+//^Explanation: array.splice(start, deleteCount, item1, item2, ...)
+
+//____________________________________________________________
+let bigArray = []
+bigArray[0] = 5;
+bigArray[99] = 9
+console.log(bigArray) //notice the output
+
+
+//__________________Destructuring of an array_________________
+//Say in this example, we wanna assign 'a' to element 1 in my array, and 'b' to element 2, and so on...
+let array1 = [1, 2, 3, 4]
+let [a, b, , c] = array1 //If I don't wanna have 3 assigned to anything
+console.log(a)
+
+//________________________________________________________________
+//Write a program to swipe 2 numbers without using a third variable
+let number1 = 5;
+let number2 = 10;
+
+
+number1 = number1 + number2; //now, number1 = 15
+number2 = number1 - number2; //now, number2 = 5
+number1 = number1 - number2; //now, number2 = 10
+
+console.log(`After swap (method 1): first = ${number1}, second = ${number2}`);
+
+//Another way:
+
+[number1, number2] = [number1, number2]
+console.log(`After swap (method 2): first = ${number1}, second = ${number2}`);
+
+//___________________________________________________
+let string1 = 'My name is Omnia Osama Ahmed.';
+let splitString = string1.split(' ');
+
+console.log(splitString);
+
+//If I want 'Omnia Osama Ahmed' to be in an kept alone:
+let [a1, a2, a3, ... a4] = splitString
+console.log(a4)
+
+// PS. Alongside traditional for loops, you can loop through elements using a for-each loop
+splitString.forEach( n =>
+    console.log(n)
+)
+
+splitString.forEach( (n, i, splitString) => 
+    console.log(n, i, splitString) 
+)
+
+/*
+^Explanation:
+ In JavaScript, when you use the forEach method on an array, the callback function you
+ provide has access to three parameters: the current element (n), the index of the 
+ current element (i), and the array itself (splitString). These parameters are 
+ automatically provided by the forEach method when it iterates over each element of 
+ the array.
+*/
+
+//__________________________________________________________________________
+//Write a program that prints only the integer numbers in the array using a for-each loop
+
+let nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+ 
+nums.forEach( n=>{
+    if(n %2 == 0)
+    {
+        console.log(n);
+    }
+})
+
+
+//__________________________________________________________________________
+//Filtering an array based on a condition
+nums.filter( n => n%2 ==0); //Filters even numbers (sublist)
+
+//Filtering numbers > 3 and are even.
+nums.filter( n => n > 3 && n %2 == 0).forEach(n => console.log(n));
+
+//___________________________________________________________________________
+//Mapping each even element to its corresponding number*2 (will print all even numbers*2)
+nums.filter(n => n %2 == 0).map(n => n * 2).forEach(n => console.log(n));
+
+
+//____________________________________________________________________________
+//Write a program that'll take an array of items, check if an element's length is greater than 5, multiply the length by 2. Use map & filter
+
+let items = ['apple', 'samsung', 'Nokia', 'Vivo', 'Lenovo', 'OPPO'];
+
+items.filter(n => n.length > 5).map(n => n.length*2).forEach(n => console.log(n));
+
+//Write a program that'll check for even elements greater than 10.
+
+let list = [2, 4, 7, 99, 88, 12, 33] 
+list.filter(n => n %2 == 0 && n > 10).forEach(n => console.log(n));
+
+//_____________________reduce_________________________________________________
+
+let newList = [2, 4, 5, 6, 8]
+console.log(newList.filter(n => n%2 == 0).map(n => n*2).reduce((a, b) => a * b)); //multiplying what we end up with
+
+//Write a program that'll check if an item's length > 5, then concatenate x, then at the end, concatenate all the items
+
+items = ['apple', 'samsung', 'Nokia', 'Vivo', 'Lenovo', 'OPPO'];
+
+console.log(items.filter( n => n.length > 5).map(n => n += 'X').reduce((a, b) => a += b))
+
+//_______________________________Recursion_____________________________
+//Write a function that'll calculate the factorial of a number
+
+function factorial(n) {
+    if (n < 0) {
+        return "Factorial is not possible for negative numbers";
+    }
+    
+    if (n === 0) { //P.S You can also check for 1
+        return 1;
+    }
+
+    return n * factorial(n - 1);
+}
+
+let example = 5;
+console.log(`Factorial of ${example} is: ${factorial(example)}`);
