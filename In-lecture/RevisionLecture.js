@@ -477,3 +477,209 @@ function factorial(n) {
 
 let example = 5;
 console.log(`Factorial of ${example} is: ${factorial(example)}`);
+
+//__________________________Maps___________________________________
+
+let map = new Map(); //Creating a map object
+
+//Adding key-value pairs to the map:
+map.set(101, 'Omnia');
+map.set(102, 'Sara');
+map.set(103, 'Aala');
+map.set(104, 'Nour');
+
+//Fetching a specific value:
+map.get(101); 
+
+//Iterating through the map:
+console.log("---ALL VALUES IN MY MAP---");
+for(let [k, v] of map)
+    console.log("THE KEY: " + k + "| VALUE: " + v);
+
+//map.forEach( (k, v) => ...) //Recall that what's inside is an anonymous function
+
+//___________________________________________________________________
+/*Write a program that contains a map called 'employeeNames' that stores the employee ID and name
+and prints all names in which the ID is greater than 101. */
+
+let employeeNames = new Map();
+
+employeeNames.set(100, 'Omnia');
+employeeNames.set(101, 'Sara');
+employeeNames.set(102, 'Aala');
+employeeNames.set(103, 'Nour');
+employeeNames.set(104, 'Sabrina');
+
+
+for(let [k, v] of employeeNames)
+{
+    if( k > 101)
+        console.log("EMPLOYEE NAME: " + v);
+}
+
+//An alternative (since there are 2 ways of iterating through a map)
+employeeNames.forEach( (v, k) => {if(k > 101) {console.log("EMPLOYEE NAME: " + v)}});
+//^ Keep in mind that here, k, v are swapped.
+
+//_______________________________________________________________________
+//Write a program that stores an array of numbers, then counts the number of repeating numbers and adds them.
+
+let numbers = [1, 2, 3, 4, 5, 1, 5];
+let repeatedNumbers = new Map();
+let result = 0;
+
+for(let i = 0; i < numbers.length; i++)
+{
+    if(!repeatedNumbers.has(numbers[i])) //Number isn't in Map
+    {
+        repeatedNumbers.set(numbers[i], 1); //Key: the number, value: # times repeated
+    }else 
+    {
+        repeatedNumbers.set(numbers[i], repeatedNumbers.get(numbers[i]) + 1);
+    }
+
+}
+
+for(let [k, v] of repeatedNumbers)
+{
+    if(v > 1)
+        result += k*v;
+}
+
+console.log(repeatedNumbers);
+console.log("SUM: " + result);
+
+//____________________________Sets_________________________________________
+
+let mySet = new Set();
+
+mySet.add(1);
+mySet.add(2);
+mySet.add(3);
+mySet.add(1);
+mySet.add(3);
+mySet.add(3);
+
+console.log('Values in my set: '); //Notice that there are no duplicates.
+for(let x of mySet)
+{
+    console.log(x);
+}
+
+//__________________________Objects________________________________________
+
+let student1 = {};
+student1 = 
+{
+    id: 'xxxxxxx',
+    firstName: 'Omnia',
+    lastName: 'Ahmed', 
+    age: 20,
+    major: 'Software Engineering'
+}
+
+//2 ways of fetching a specific value
+student1.firstName;
+student1['firstName'];
+
+//Different ways of creating objects:
+//1. Through a parameterized constructor
+
+function Student(id, firstName, lastName, age, major) {
+    this.id = id;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+    this.major = major;
+    this.university = function() 
+    {
+        console.log(`${this.firstName} is a student at ADU.`);
+    }
+}
+
+//So we're basically creating an constructor and defining the attributes and methods.
+
+//________________________________________________________________________
+/*Create a constructor of the laptop class which has 2 parameters; cpu and ram. It also 
+has a method that informs us that the laptop is running*/
+
+function Laptop(cpu, ram) 
+{
+    this.cpu = cpu;
+    this.ram = ram;
+
+    this.isRunning = function() //Anonymous function
+    {
+        console.log(`The laptop with ${this.cpu} CPU and ${this.ram} RAM is running.`);
+    }
+}
+
+let laptop1 = new Laptop("Intel i7", "16GB");
+let laptop2 = new Laptop("AMD Ryzen 5", "8GB");
+let laptop3 = new Laptop("Apple M1", "32GB");
+
+console.log('Calling the isRunning method for each of the objects in the Laptop class: ');
+laptop1.isRunning();  
+laptop2.isRunning();  
+laptop3.isRunning();  
+
+//___________________________Nested Objects_____________________________________
+
+let itEngineer =
+{
+    name : 'Omnia', 
+    technology : '35', 
+    laptop : 
+    {
+        brand : 'Lenovo'
+    }
+}
+
+console.log(itEngineer); //Will print both objects, the second within the first/
+console.log(itEngineer.laptop.brand); //Go outer to inner
+
+//To check if a value exists before calling  a method on it (like .length), we can use a question mark, like this:
+//console.log(itEngineer.name?.length); //If the object didn't have a name value, .length won't be called.
+
+//To go through every key in an object (& nested loop):
+for (let key in itEngineer) {
+    if (typeof itEngineer[key] !== 'object' || itEngineer[key] === null) {
+        console.log(key + ": " + itEngineer[key]);
+    } else {
+        for (let innerKey in itEngineer[key]) {
+            console.log(innerKey + ": " + itEngineer[key][innerKey]);
+        }
+    }
+}
+
+//___________________________________________________________________
+/*Write a program that contains an object Laptop which has another Laptop object within it and a compare method
+which will compare the ram of the 2 Laptops*/
+
+let Laptop1 = 
+{
+    brand: 'HP',
+    ram: 16,
+
+    Laptop2: 
+    {
+        brand: 'Lenovo',
+        ram: 32,
+    },
+    
+    compareLaptops: function() 
+    {
+        if (this.ram > this.Laptop2.ram) 
+        {
+            console.log(`${this.brand} has more RAM (${this.ram}GB) than ${this.Laptop2.brand} (${this.Laptop2.ram}GB).`);
+        } else if (this.ram < this.Laptop2.ram) 
+        {
+            console.log(`${this.Laptop2.brand} has more RAM (${this.Laptop2.ram}GB) than ${this.brand} (${this.ram}GB).`);
+        } else 
+        {
+            console.log(`${this.brand} and ${this.Laptop2.brand} have the same amount of RAM (${this.ram}GB).`);
+        }
+    }
+};
+
+Laptop1.compareLaptops();

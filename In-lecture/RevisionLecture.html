@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Button Page</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+        .button {
+            margin: 15px;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        .button-1 {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .button-2 {
+            background-color: #008CBA;
+            color: white;
+        }
+        .button-3 {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+        <script>
+            
+            console.log("Hello! We're practicing Ajax.");
+
+let button_1 = document.getElementById('button-1');
+let button_2 = document.getElementById('button-2');
+let button_3 = document.getElementById('button-3');
+
+button_1.addEventListener('click', clickHandler1);
+button_2.addEventListener('click', clickHandler2);
+button_3.addEventListener('click', clickHandler3);
+
+function clickHandler1() {
+    console.log("BUTTON 1 HAS BEEN CLICKED!");
+    makeAjaxRequest('Test.txt');
+}
+
+function clickHandler2() {
+    console.log("BUTTON 2 HAS BEEN CLICKED!");
+    makeAjaxRequest('AnotherFile.txt');
+}
+
+function clickHandler3() {
+    console.log("BUTTON 3 HAS BEEN CLICKED!");
+    makeAjaxRequest('SomeOtherFile.txt');
+}
+
+function makeAjaxRequest(url) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+
+    xhr.onprogress = function() {
+        console.log("Request in progress...");
+    }
+
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            console.log("Response:", xhr.responseText);
+        } else {
+            console.error("Request failed. Status:", xhr.status);
+        }
+    }
+
+    xhr.onerror = function() {
+        console.error("Request error.");
+    }
+
+    xhr.send();
+};
+    </script>
+</head>
+<body>
+    <button id="button-1" class="button button-1">Button 1</button>
+    <button id="button-2" class="button button-2">Button 2</button>
+    <button id="button-3" class="button button-3">Button 3</button>
+</body>
+</html>
