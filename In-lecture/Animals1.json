@@ -1,0 +1,32 @@
+
+   
+[
+        {
+            "name" : "Leo",
+            "species": "Lion",
+            "food": 
+            {
+                "Likes": ["Meat", "Fish"],
+                "Dislikes": ["Vegetables", "Fruits"]
+            }
+        },
+        {
+            "name": "Ella",
+            "species": "Elephant",
+            "food": 
+            {
+                "Likes": ["Grass", "Fruits", "Bark"],
+                "Dislikes": ["Meat", "Processed Food"]
+            }
+        },
+        {
+            "name": "Whiskers",
+            "species": "Cat",
+            "food": 
+            {
+                "Likes": ["Fish", "Chicken", "Catnip"],
+                "Dislikes": ["Citrus", "Onions"]
+            }
+        }
+]
+

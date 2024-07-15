@@ -1,0 +1,27 @@
+
+[
+        {
+            "name": "Fido",
+            "species": "Dog",
+            "food": {
+                "Likes": ["Meat", "Dog Treats", "Peanut Butter"],
+                "Dislikes": ["Chocolate", "Grapes"]
+            }
+        },
+        {
+            "name": "Polly",
+            "species": "Parrot",
+            "food": {
+                "Likes": ["Seeds", "Fruits", "Nuts"],
+                "Dislikes": ["Avocado", "Chocolate"]
+            }
+        },
+        {
+            "name": "Goldie",
+            "species": "Goldfish",
+            "food": {
+                "Likes": ["Fish Flakes", "Vegetables"],
+                "Dislikes": ["Bread", "Fried Foods"]
+            }
+        }
+    ]

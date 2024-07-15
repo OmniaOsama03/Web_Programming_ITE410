@@ -683,3 +683,78 @@ let Laptop1 =
 };
 
 Laptop1.compareLaptops();
+
+//______________________________________________________________
+//What's the difference between Var and let? Var --> Global, let --> Local
+
+var xx = 10;
+
+/*if(true)
+{
+    let yy = 5;
+    var zz = 10;
+    console.log(xx, yy);
+}*/
+
+//console.log(xx, yy, zz);
+//What will the error be and why?  it'll recognize xx and zz, but not yy.
+
+//____________________________________________________________
+
+let employee =
+{
+    employeeId : 123456,
+    name : 'Omnia Osama',
+    age : 20,
+    address : 
+    {
+        houseNo : 123,
+        city : 'Hartfort',
+        state : 'Connecticut',
+        country : 'United States'
+    }, 
+    technologies : ['Java', 'JavaScript', 'MongoDB'],
+}
+
+console.log(employee);
+console.log("The employee's country: " + employee.address.country);
+
+//Employee constructor:
+function Address(houseNo, city, state, country)
+{
+    this.houseNo = houseNo;
+    this.city = city;
+    this.state = state;
+    this.country = country;
+}
+
+function Employee(employeeId, name, age, address, technologies) 
+{
+    this.employeeId = employeeId;
+    this.name = name;
+    this.age = age;
+    this.address = address;
+    this.technologies = technologies;
+}
+
+//Creating  2 employee objects:
+let address1 = new Address(1, 'Abu Dhabi', 'Abu Dhabi', 'United Arab Emirates');
+let address2 = new Address(2, 'Hartfort', 'Connecticut', 'United States');
+
+//To pass objects during client-server communication, we can use JSON parse() and stringify()
+const employee1JSON = JSON.stringify(employee1); //Now, we converted employee1 obj to JSON format.
+const employee1Object = JSON.parse(employee1JSON); //Converted employee1 JSON back to string.
+
+let employee1 = new Employee(789101, 'Sara Hamdan', 21, address1, ['Java', 'JavaScript', 'Python']);
+let employee2 = new Employee(123456, 'Omnia Osama', 20, address2, ['Java', 'Python', 'C#']);
+let employee3 = new Employee(234566, 'Osama Mohamed', 50, address2, ['Matlab', 'Python']);
+let employee4 = new Employee(789789, 'Maadoum Mustafa', 50, address2, ['Java', 'JavaScript']);
+
+let employeeArray = [employee1, employee2, employee3, employee4];
+
+// Convert the array into a JSON string
+let employeeArrayJSON = JSON.stringify(employeeArray);
+console.log(employeeArrayJSON);
+
+//________________________________________________________________
+
