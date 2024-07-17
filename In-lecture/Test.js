@@ -22,3 +22,4 @@ let bigNumber = 400n; //notice the 'n' at the end
 console.log(bigNumber);
 console.log("type: " + typeof bigNumber);
 
+

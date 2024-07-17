@@ -496,7 +496,7 @@ console.log("---ALL VALUES IN MY MAP---");
 for(let [k, v] of map)
     console.log("THE KEY: " + k + "| VALUE: " + v);
 
-//map.forEach( (k, v) => ...) //Recall that what's inside is an anonymous function
+//map.forEach( (k, v) => console.log("HERE: " + k)) //Recall that what's inside is an anonymous function
 
 //___________________________________________________________________
 /*Write a program that contains a map called 'employeeNames' that stores the employee ID and name
@@ -537,7 +537,6 @@ for(let i = 0; i < numbers.length; i++)
     {
         repeatedNumbers.set(numbers[i], repeatedNumbers.get(numbers[i]) + 1);
     }
-
 }
 
 for(let [k, v] of repeatedNumbers)
