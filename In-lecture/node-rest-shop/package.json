@@ -1,0 +1,11 @@
+{
+  "name": "rest-shop",
+  "version": "1.0.0",
+  "description": "A little e commerce application using REST",
+  "main": "endpoints.js",
+  "author": "Omnia Ahmed",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

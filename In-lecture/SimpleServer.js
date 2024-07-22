@@ -11,12 +11,15 @@ var http = require('http');
 
 //Create a function that returns an object, stringifies it, and sends it in the response
 
-http.createServer(function(req, res) {
+http.createServer(function(req, res) 
+{
     // Set the Content-Type to 'application/json' for a JSON response
     res.writeHead(200, { 'Content-Type': 'application/json' });
     let studentObj = createObject();
+
     res.write(studentObj);
     res.end();
+    
 }).listen(8888, function() {
     console.log('Server is listening on port 9000');
 });
