@@ -2,7 +2,7 @@
 
 //Import express and create the router that'll route the endpoints
 const express = require('express');
-const router = express.router;
+const router = express.Router();
 
 //Beginning with the endpoints
 //1. POST
@@ -66,7 +66,7 @@ router.patch('/:productID', (req, res, next) =>
 
 
 //4. DELETE
-router.get('/:productID', (req, res, next) =>
+router.delete('/:productID', (req, res, next) =>
     {
         const id = req.params.productID;
 
@@ -89,4 +89,4 @@ router.get('/:productID', (req, res, next) =>
     })
 
 //Allowing the file to be imported elsewhere
-module.export = router;
+module.exports = router;
