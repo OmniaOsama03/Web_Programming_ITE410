@@ -6,14 +6,18 @@ const router = express.Router();
 
 //Beginning with the endpoints
 //1. POST
-router.post('/', (req, res, next) =>
-{
-    res.status(200).json(
-        {
-            message : "Handling a post request for /products"
-        }
-    )
-})
+router.post('/', (req, res, next) => {
+    // Parsing the request and creating the object
+    const product = {
+        name: req.body.name,
+        price: req.body.price
+    }; // Now, it can be saved in the database
+
+    res.status(200).json({
+        message: 'Handling a post request for /products',
+        createdProduct: product
+    });
+});
 
 //2. GET
 router.get('/', (req, res, next) =>
@@ -34,7 +38,7 @@ router.get('/:productID', (req, res, next) =>
         {
         res.status(200).json(
             {
-                message : "You have discovered the special id! Woohoo! Prize: nooo",
+                message : "You have discovered the special id! Woohoo! Prize: nooo!",
                 id : id
             })
         }else

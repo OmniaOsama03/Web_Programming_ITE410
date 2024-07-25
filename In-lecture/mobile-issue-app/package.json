@@ -1,0 +1,20 @@
+{
+  "name": "mobile-issue-app",
+  "version": "1.0.0",
+  "description": "Omnia's REST project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon Server.js"
+  },
+  "author": "Omnia Ahmed",
+  "license": "ISC",
+  "devDependencies": {
+    "body-parser": "^1.20.2",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.4"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
