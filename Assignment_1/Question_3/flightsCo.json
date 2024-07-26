@@ -1,0 +1,51 @@
+{
+    "Amman": 
+    {
+        "start":"Abu Dhabi",
+        "flights":
+        [
+        {"carrier":"Etihad Airways","price":1450,"stops":0},
+        {"carrier":"Royal Jordanian","price":1300,"stops":0},
+        {"carrier":"Gulf Air","price":1190,"stops":2}
+        ]
+    },
+
+    "Cairo":
+    {
+        "start":"Abu Dhabi",
+        "flights":
+        [
+        {"carrier":"British Airlines","price":2500,"stops":2},
+        {"carrier":"Air Egypt","price":1562,"stops":0},
+        {"carrier":"Etihad Airways","price":1750,"stops":0},
+        {"carrier":"Gulf Air","price":1625,"stops":2},
+        {"carrier":"KLM","price":1458,"stops":1}
+        ]
+    },
+
+    "Paris":
+    {
+        "start":"Abu Dhabi",
+        "flights":
+        [
+        {"carrier":"Air France","price":3200,"stops":0},
+        {"carrier":"Etihad Airways","price":2900,"stops":0},
+        {"carrier":"Lufthansa","price":2700,"stops":1},
+        {"carrier":"British Airways","price":3100,"stops":1},
+        {"carrier":"KLM","price":2600,"stops":2}
+        ]
+    },
+
+    "Tokyo":
+    {
+        "start":"Abu Dhabi",
+        "flights":
+        [
+        {"carrier":"Japan Airlines","price":4100,"stops":0},
+        {"carrier":"Etihad Airways","price":3900,"stops":0},
+        {"carrier":"Singapore Airlines","price":3750,"stops":1},
+        {"carrier":"Cathay Pacific","price":3600,"stops":2},
+        {"carrier":"Emirates","price":4000,"stops":1}
+        ]
+    }
+}

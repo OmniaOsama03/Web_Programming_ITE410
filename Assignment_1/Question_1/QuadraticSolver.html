@@ -1,0 +1,180 @@
+<html>
+<head>
+    <title>ITE410 Assignment - Quadratic Equation Solver</title>
+    
+    <style>
+        body 
+        {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f8f1;
+            color: #333;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container 
+        {
+            background-color: #46a965ab;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h2 
+        {
+            color: #0d4609;
+        }
+
+        .input-group 
+        {
+            margin-bottom: 15px;
+        }
+        
+        label 
+        {
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .input-field 
+        {
+            width: 60px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        button 
+        {
+            background-color: #063f14;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        button:hover 
+        {
+            background-color: #327141;
+        }
+
+
+        #result 
+        {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #03210b;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h2> Quadratic Equation Solver</h2>
+
+    <div class="input-group">
+        <label>a:</label>
+        <input class = "input-field" type = "number" id = "a"  required>
+    </div>
+
+    <div class="input-group">
+        <label>b:</label>
+        <input class = "input-field" type = "number" id = "b"  required>
+    </div>
+
+    <div class="input-group">
+        <label>c:</label>
+        <input class = "input-field" type = "number" id = "c" required>
+    </div>
+
+    <button onclick = "calculateRoots()">Calculate roots</button>
+
+    <div id="result"></div>
+
+</div>
+
+<script>
+    function calculateRoots() 
+    {
+        //Capturing the values of a, b, and c and doing explicit casting
+        let a = parseInt(document.getElementById('a').value);
+        let b = parseInt(document.getElementById('b').value);
+        let c = parseInt(document.getElementById('c').value);
+
+        //Storing the result that will be returned after the calculations
+        let resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = '';
+
+        //Checking if the user entered values for a, b, or c
+         if (isNaN(a) || isNaN(b) || isNaN(c)) 
+         {
+            alert('Please enter valid integers for a, b, and c.');
+            return; //Stopping execution if the input is Nan 
+        }
+
+        //Making sure the value of 'a' isn't zero
+        if (a === 0) 
+        {
+            alert('a must be non-zero.');
+            return; //Stopping execution if a is zero
+        }
+
+        //Initializing an empty array to collect invalid fields
+        var invalidFields = [];
+
+        //Checking each field and adding invalid ones to the array
+        if (a < -99 || a > 99) {
+            invalidFields.push('a');
+        }
+        if (b < -99 || b > 99) {
+            invalidFields.push('b');
+        }
+        if (c < -99 || c > 99) {
+            invalidFields.push('c');
+        }
+
+        //If there are any invalid fields, alert the user
+        if (invalidFields.length > 0) 
+        {
+            alert('Please enter values between -99 and 99 for the following fields: ' + invalidFields.join(', ') + '.');
+            return; // Stopping execution if any value is beyond the range
+        }
+
+        //Calculating the discriminant in the equation
+        let discriminant = b * b - 4 * a * c;
+
+
+        if (discriminant < 0) //Meaning, b^2 < 4ac
+        {
+            resultDiv.innerHTML = 'Solution: x’s roots are imaginary';
+
+        } else if (discriminant == 0) 
+        {
+            let singleRoot = -b / (2 * a); //The discriminant is excluded because since it's 0
+            resultDiv.innerHTML = "Solution: x = " + singleRoot;
+
+        } else 
+        {
+            //Calculating the sqaure root of the discriminant
+            let  sqrtDiscriminant = Math.sqrt(discriminant);
+
+            //Calculating the first and seconf roots (first time +, second time -) 
+            let firstRoot = (-b + sqrtDiscriminant) / (2 * a);
+            let secondRoot = (-b - sqrtDiscriminant) / (2 * a);
+
+            resultDiv.innerHTML = "Solution: x1 = " + firstRoot + " and x2 = " + secondRoot;
+        }
+    }
+</script>
+
+</body>
+</html>

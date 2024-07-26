@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <title>Student Grading Portal</title>
+    <link rel = "stylesheet" href = "GradingPortal.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Student Grading Portal</h1>
+
+        <form id = "gradingForm">
+            <div class = "input-group">
+                <label class = "score1">Score 1:</label>
+                <input class = "input-field" id = "score1" required>
+            </div>
+            <div class="input-group">
+                <label class = "score2">Score 2:</label>
+                <input class = "input-field" id = "score2" required>
+            </div>
+            <div class="input-group">
+                <label class = "score3">Score 3:</label>
+                <input class = "input-field" id = "score3" required>
+            </div>
+            <div class = "input-group">
+                <label class = "score4">Score 4:</label>
+                <input class = "input-field" id = "score4" required>
+            </div>
+
+            <button type = "button" onclick = "calculateGrades()" >Calculate Grades</button>
+            <button type = "reset">Reset</button>
+        </form>
+
+        <div id = "result"></div>
+
+    </div>
+    <script src="GradingPortal.js"></script>
+</body>
+</html>

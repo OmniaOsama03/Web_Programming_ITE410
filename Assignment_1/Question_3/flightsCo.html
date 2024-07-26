@@ -1,0 +1,169 @@
+<html>
+<head>
+    <title>Flight Search</title>
+<style>
+    body 
+        {
+            font-family: Arial, sans-serif;
+            background-color: #e9f4e4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container 
+        {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgb(147, 197, 137);
+            box-shadow: 0 0 10px rgba(11, 37, 18, 0.374);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+        }
+
+        label 
+        {
+            color : #142804;
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        .text 
+        {
+            width: 60%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .checkbox
+        {
+            margin-right: 10px;
+        }
+
+        button 
+        {
+            width: 60%;
+            padding: 10px;
+            background-color: #3a7a41;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button:hover 
+        {
+            background-color: #183d15;
+        }
+
+        .results
+        {
+            margin-top: 20px;
+        }
+        .results h1 
+        {
+            font-size: 24px;
+            color: #0e360d;
+            margin-bottom: 20px;
+        }
+
+        .results p 
+        {
+            font-size: 18px;
+            color: #0d1a05;
+            margin: 5px 0;
+        }
+
+        .name 
+        {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+
+</style>
+</head>
+
+<body>
+    <div class= "container">
+        <label>Start location: </label>
+        <input  class = "text" type = "text" id = "start" />
+
+        <label>End location: </label>
+        <input class = "text" type = "text" id = "dest" />
+
+        <label> Non-stop?<input class = "checkbox" type = "checkbox" id = "stops"> </label>
+        
+        <button onclick = "go()">Go!</button>
+
+        <div id = "results"></div>
+
+    </div>
+    
+    <p class = "name" > ©Omnia Osama Ahmed  </p>
+
+    <script>
+        function go() 
+        {
+            //Capturing the value of the start and end destination, as well as whether the checkbox was ticked
+            var startCity = document.getElementById('start').value;
+            var destCity = document.getElementById('dest').value;
+            var nonStop = document.getElementById('stops').checked;
+
+            //Capturing the result div, where we will add our results later
+            var results = document.getElementById('results');
+            let resultsHTML = ''; //Initializing a string to build the HTML content
+
+            //Creating an XHR object for communication
+            var xhr = new XMLHttpRequest();
+
+            //Openning the request, with request type GET
+            xhr.open('GET', 'flightsCo.json', true);
+
+            xhr.onload = function() 
+            {
+                //Parsing the JSON response from the server
+                var data = JSON.parse(xhr.responseText);
+
+                //Checking if the destination city exists in the data and if it starts from the correct city
+                if (data[destCity] && data[destCity].start === startCity) 
+                {
+                    // Adding the heading to the results HTML
+                    resultsHTML += `<h1>Flights from ${startCity} to ${destCity}</h1>`;
+
+                    var flights = data[destCity].flights;
+
+                    //Filtering flights based on whether the checkbox is checked
+                    if (nonStop) 
+                    {
+                        flights = flights.filter(n => n.stops === 0);
+                    }
+
+                    //Adding flights to the results HTML
+                    flights.forEach(n => 
+                    {
+                        resultsHTML += `<p>$${n.price} from ${n.carrier} with ${n.stops} stops</p>`;
+                    });
+
+                } else 
+                {
+                    resultsHTML = '<p> No flights found for the specified route. </p>';
+                }
+
+                //Updating the results div with the built HTML content
+                results.innerHTML = resultsHTML; 
+                
+                };
+
+            //Sending the request
+            xhr.send();
+        };
+
+    </script>
+</body>
+</html>
