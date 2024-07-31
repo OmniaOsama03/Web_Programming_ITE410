@@ -31,7 +31,7 @@ fs.readFile('calc2.js', 'utf8', function(err, data)
     }
 });
 
-//Now, in the terminal, write node readFile.js
+//Now, in the terminal, write node fileName.js
 //To write into the file: 
 fs.writeFile('calc2.js', 'console.log("Hello!")', function(err) {
     if (err) {
@@ -41,12 +41,12 @@ fs.writeFile('calc2.js', 'console.log("Hello!")', function(err) {
     }
 }); 
 
-//To append to a file, use fr.appendFile
-//To delete a file: 
+//To append to a file, use fs.appendFile
+/*To delete a file: 
 fs.unlink('calc2.js', function()
 {
     console.log("File has been deleted");
-})
+})*/
 
 
 let phone = "SamsungS24";
