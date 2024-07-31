@@ -15,7 +15,7 @@ router.post('/issue/:id', (req, res, next) => {
     const id = req.params.id;
     
     // Find the mobile object with the given id
-    const mobile = mobiles.filter(m => m.id === parseInt(id))[0];
+    const mobile = mobiles.filter(m => m.id == id);
     
     // Check if the mobile exists and its availabilityStatus is false
     if (mobile && !mobile.availabilityStatus) 
@@ -47,7 +47,7 @@ router.post('/return/:id', (req, res, next) => {
     const id = req.params.id;
     
     // Find the mobile object with the given id
-    const mobile = mobiles.filter(m => m.id === parseInt(id))[0];
+    const mobile = mobiles.filter(m => m.id == id);
     
     // Check if the mobile exists and its availabilityStatus is true
     if (mobile && mobile.availabilityStatus) 
@@ -79,7 +79,7 @@ router.get('/:id', (req, res, next) => {
     const id = req.params.id;
     
     // Find the mobile object with the given id
-    const mobile = mobiles.filter(m => m.id === parseInt(id))[0];
+    const mobile = mobiles.filter(m => m.id == id);
     
     // Check if the mobile exists 
     if (!mobile) 
