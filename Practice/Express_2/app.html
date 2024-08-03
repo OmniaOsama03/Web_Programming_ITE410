@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Information</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+        }
+        .wrapper {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        .title {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        #container {
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #e0e7ff; /* Light blue color */
+            color: #333;
+            margin-top: 15px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="title">Our text retrieved from /getEvents:</div>
+        <button onclick="getEvents()">Get Events</button>
+        <div id="container">
+            <!-- Retrieved text will be displayed here -->
+        </div>
+    </div>
+
+    <script>
+        async function getEvents() {
+           
+            try {
+                // Make a GET request to the /getEvents endpoint
+                const response = await fetch('http://localhost:8008/getEvents');
+
+                const data = await response.json();
+
+                // Display the retrieved data in the container
+                document.getElementById('container').innerText = JSON.stringify(data);
+
+            } catch (error) 
+            {
+                document.getElementById('container').innerText = 'Error fetching events: ' + error.message;
+            }
+
+        }
+            
+
+    </script>
+</body>
+</html>
+
