@@ -179,7 +179,7 @@ let conversion1 = String(6); //Explicit
 let conversion2 = 4;
 console.log(typeof conversion2);
 
-conversion2 += ''; //Explicit conversion to string.
+conversion2 += ''; //Implicit conversion to string.
 console.log(typeof conversion2);
 
 conversion2 -= 2; //Implicit conversion to Number
