@@ -1,85 +1,105 @@
 const response  = require('express');
 
 //get the model
-const employee = require('../models/employeeModel');
+const Employee = require('../models/employeeModel');
 
-//method to display list of employees
-const index = (req, res, next)=>
-{
-    employee.find().then(response =>
-    {
-        res.status(200).json(response);
-
-    }).catch(err =>
-    {
-        res.status(200).json({message : "Error occured fetching the employee list."});
-    })
-}
-
-//to save a new employee
-const store = (req, res, next) =>
-{
-    let employee = new Employee(
-    {
-        name : req.body.name,
-        designation: req.body.designation,
-        email : req.body.email,
-        phone : req.body.phone,
-        age : req.body.age
-    });
-
-    employee.save().then(response =>
-    {
-        res.status(200).json({message : "Employee added successfully."});
-
-    }).catch(error =>
-    {
-        res.json({message : "error occured during data update for employee."})
-    })
-}
-
-//updating some fields, but only what was provided by the user.
-const update = (req, res, next) => {
-    const employeeId = req.body.employeeId;
-
-    // Create update data object from request body
-    const updateData = {
-        name: req.body.name,
-        designation: req.body.designation,
-        email: req.body.email,
-        phone: req.body.phone,
-        age: req.body.age
-    };
-
-    // Find and update employee by ID
-    Employee.findByIdAndUpdate(employeeId, { $set: updateData })
-        .then(() => {
-            res.status(200).json({
-                message: 'Employee updated successfully'
-            });
+//show the list of employees
+const index=(req,res,next)=>{
+    Employee.find()
+    .then(response=>{
+        res.json({
+            response
         })
-        .catch(error => {
-            res.status(500).json({
-                message: 'Error updating employee',
-                error: error.message 
-            });
-        });
-};
-
-
-//For delete, we don't need the whole body, just the id
-const deleteEmployee = (req, res, next)=>
-{
-    let employeeid = req.body.employeeid;
-
-    Employee.findByIdAndRemove(employeeid).then(()=>
-    {
-        res.json({message: "Employee deleted successfully."});
-
-    }).catch(error =>
-    {
-        res.json({message : "An error occured while deleting employee."})
+    })
+    .catch(error=>{
+        res.json({
+            message:"an error occured during fetching the employee list"
+        })
     })
 }
 
-module.exports = {index, show, store, update, deleteEmployee}
+//Show a single employee
+const show=(req,res,next)=>{
+    let employeeId=req.body.employeeId
+    Employee.findById(employeeId)
+    .then(response=>{
+        res.json({
+            response
+        })
+    })
+    .catch(error=>{
+        res.json({
+            message:"an error occured during fetching employee record"
+        })
+       
+    })
+}
+
+//Add an employee to database
+const store=(req,res,next)=>{
+    let employee= new Employee({
+        name:req.body.name,
+        designation:req.body.designation,
+        email:req.body.email,
+        phone:req.body.phone,
+        age:req.body.age
+
+    })
+    employee.save()
+    .then(response=>{
+        res.json({
+            message:"Employee added successfully"
+        })
+    })
+    .catch(error=>{
+        res.json({
+            message:"error occured during adding employee record"
+        })
+    })
+
+}
+
+//Add a function to update an employee by employee id
+const update=(req,res,next)=>{
+    let employeeId=req.body.employeeId
+    let updateData={
+        name:req.body.name,
+        designation:req.body.designation,
+        email:req.body.email,
+        phone:req.body.phone,
+        age:req.body.age
+    }
+    Employee.findByIdAndUpdate(employeeId,{$set:updateData})
+    .then(()=>{
+        res.json({
+            message:"employee data successfully updated"
+        })
+    })
+    .catch(error=>{
+        res.json({
+            message:"error occured during data update for employee"
+        })
+    })
+}
+
+//delete an employee by id
+const deleteEmployee=(req,res,next)=>{
+    let employeeId=req.body.employeeId
+    Employee.findByIdAndRemove(employeeId)
+    .then(()=>{
+        res.json({
+            message:`employee deleted successfully with id ${employeeId}`
+        })
+    })  
+    .catch(error=>{
+        res.json({
+            message:"error occured while deleting the employee record"
+        })
+    })
+    
+
+}
+
+module.exports= {
+    index,show,store,update,deleteEmployee
+}

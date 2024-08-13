@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 //There are 2 ways to connect the database: 1. mongoose.connect('the connection string') and another.
+mongoose.connect('mongodb://127.0.0.1:27017/employee',{useNewUrlParser:true, useUnifiedTopology:true})
 
 const db = mongoose.connection
 

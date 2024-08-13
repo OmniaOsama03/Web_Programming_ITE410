@@ -1,0 +1,17 @@
+[
+    {
+        "name" : "Omnia",
+        "age"  : 20,
+        "secret" : "I don't eat spicy food!"
+    },
+    {
+        "name" : "Lolo",
+        "age"  : 22,
+        "secret" : "I once ate a car! Yes, a whole vehicle!"
+    },
+    {
+        "name" : "Seal",
+        "age"  : 4,
+        "secret" : "Seals are my least favourite animal"
+    }
+]

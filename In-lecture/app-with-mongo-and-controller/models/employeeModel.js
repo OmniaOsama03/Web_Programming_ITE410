@@ -3,9 +3,9 @@
 //timestamp : true is used for the audit field (last updated, created, and such..). Benifit: Security, rollback
 
 const mongoose = require('mongoose');
-const schema = mongoose.schema;
+const schema = mongoose.Schema;
 
-const employeeSchema = new Schema(
+const employeeSchema = new schema(
 {
     name : {type : String},
     designation : {type : String},
